@@ -1,24 +1,30 @@
-﻿static List<string> Two(List<string> words, string letters)
+﻿public class Two()
 {
-    List<string> presents = [];
-    HashSet<char> hashLetters = new(letters);
-    foreach (var word in words)
+    public static void Run()
     {
-        HashSet<char> hashWord = new(word);
+        List<string> words = ["tren", "oso", "pelota"];
+        string letters = "tronesa";
 
-        if (hashWord.IsSubsetOf(hashLetters))
+        List<string> result = run(words, letters);
+        foreach (var item in result)
         {
-            presents.Add(word);
+            Console.WriteLine(item);
         }
     }
-    return presents;
-}
 
-List<string> words = ["tren", "oso", "pelota"];
-string letters = "tronesa";
+    private static List<string> run(List<string> words, string letters)
+    {
+        List<string> presents = [];
+        HashSet<char> hashLetters = new(letters);
+        foreach (var word in words)
+        {
+            HashSet<char> hashWord = new(word);
 
-List<string> result = Two(words, letters);
-foreach (var item in result)
-{
-    Console.WriteLine(item);
+            if (hashWord.IsSubsetOf(hashLetters))
+            {
+                presents.Add(word);
+            }
+        }
+        return presents;
+    }
 }
