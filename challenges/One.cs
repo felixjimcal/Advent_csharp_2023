@@ -1,14 +1,11 @@
 ﻿public class One()
 {
-    public static void Run()
+    public static int Run(List<int> nums)
     {
-        Console.WriteLine(run());
-    }
-
-    private static int run()
-    {
-        List<int> nums = [2, 1, 3, 5, 3, 2];
         HashSet<int> alreadyPresent = [];
+
+        // save the numbers in a hashset
+        // if it's already present, bingo
 
         int result = -1;
         foreach (int num in nums)
@@ -22,6 +19,7 @@
         return result;
     }
 }
+
 /*
 En la fábrica de juguetes del Polo Norte, cada juguete tiene un número de identificación único.
 
