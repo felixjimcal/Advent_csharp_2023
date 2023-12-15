@@ -1,22 +1,25 @@
-﻿public class Two()
+﻿namespace challenges
 {
-    public static List<string> Run(List<string> words, string letters)
+    public class Two()
     {
-        List<string> presents = [];
-        HashSet<char> hashLetters = new(letters);
-        foreach (var word in words)
+        public static List<string> Run(List<string> words, string letters)
         {
-            HashSet<char> hashWord = new(word);
-
-            // si word es un subconjunto
-            // la añadimos
-
-            if (hashWord.IsSubsetOf(hashLetters))
+            List<string> presents = [];
+            HashSet<char> hashLetters = new(letters);
+            foreach (var word in words)
             {
-                presents.Add(word);
+                HashSet<char> hashWord = new(word);
+
+                // si word es un subconjunto
+                // la añadimos
+
+                if (hashWord.IsSubsetOf(hashLetters))
+                {
+                    presents.Add(word);
+                }
             }
+            return presents;
         }
-        return presents;
     }
 }
 

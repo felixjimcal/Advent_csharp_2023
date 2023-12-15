@@ -1,4 +1,5 @@
-﻿using System;
+﻿using challenges;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace ChallengesTests
         [TestMethod]
         public void TestRunWithMatchingWords()
         {
-            List<string> words = new List<string> { "tren", "oso", "pelota" };
+            List<string> words = ["tren", "oso", "pelota"];
             string letters = "tronesa";
             List<string> result = Two.Run(words, letters);
 
@@ -22,7 +23,7 @@ namespace ChallengesTests
         [TestMethod]
         public void TestRunWithNoMatchingWords()
         {
-            List<string> words = new List<string> { "gato", "perro" };
+            List<string> words = ["gato", "perro"];
             string letters = "tronesa";
             List<string> result = Two.Run(words, letters);
 
@@ -32,7 +33,7 @@ namespace ChallengesTests
         [TestMethod]
         public void TestRunWithAllMatchingWords()
         {
-            List<string> words = new List<string> { "tren", "oso", "nota" };
+            List<string> words = ["tren", "oso", "nota"];
             string letters = "tronesa";
             List<string> result = Two.Run(words, letters);
 

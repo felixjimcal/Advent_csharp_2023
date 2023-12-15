@@ -4,29 +4,46 @@
     {
         public static string Run(string original, string modified)
         {
-            string result = "";
+            Dictionary<char, int> charCount = [];
 
-            // sort the characters
-            string.Concat(original.OrderBy(c => c));
-            string.Concat(modified.OrderBy(c => c));
-
-            // first check the length
-            if (original.Length > modified.Length)
+            // Contar la frecuencia de cada carácter en 'original'
+            foreach (char ch in original)
             {
-                result = GetModifiedValue(original, modified);
+                if (charCount.TryGetValue(ch, out int value))
+                {
+                    charCount[ch] = ++value;
+                }
+                else
+                {
+                    charCount[ch] = 1;
+                }
             }
-            else if (original.Length < modified.Length)
+
+            // Ajustar la frecuencia basada en 'modified' y encontrar el carácter adicional
+            foreach (char ch in modified)
             {
-                result = GetModifiedValue(modified, original);
+                if (!charCount.TryGetValue(ch, out int value))
+                {
+                    return ch.ToString(); // Este es el carácter adicional
+                }
+
+                charCount[ch] = --value;
+                if (value < 0)
+                {
+                    return ch.ToString(); // Este es el carácter adicional
+                }
             }
 
-            return result;
-        }
+            // Buscar cualquier carácter que falte en 'modified'
+            foreach (KeyValuePair<char, int> pair in charCount)
+            {
+                if (pair.Value > 0)
+                {
+                    return pair.Key.ToString(); // Este es el carácter faltante
+                }
+            }
 
-        // Get the different value with except
-        private static string GetModifiedValue(string a, string b)
-        {
-            return new string(a.Except(b).ToArray());
+            return ""; // Si no se encuentra ningún carácter adicional o faltante
         }
     }
 }

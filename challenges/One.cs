@@ -1,22 +1,25 @@
-﻿public class One()
+﻿namespace challenges
 {
-    public static int Run(List<int> nums)
+    public class One()
     {
-        HashSet<int> alreadyPresent = [];
-
-        // save the numbers in a hashset
-        // if it's already present, bingo
-
-        int result = -1;
-        foreach (int num in nums)
+        public static int Run(List<int> nums)
         {
-            if (!alreadyPresent.Add(num))
+            HashSet<int> alreadyPresent = [];
+
+            // save the numbers in a hashset
+            // if it's already present, bingo
+
+            int result = -1;
+            foreach (int num in nums)
             {
-                result = num;
-                break;
+                if (!alreadyPresent.Add(num))
+                {
+                    result = num;
+                    break;
+                }
             }
+            return result;
         }
-        return result;
     }
 }
 
