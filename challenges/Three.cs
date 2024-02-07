@@ -4,46 +4,31 @@
     {
         public static string Run(string original, string modified)
         {
-            Dictionary<char, int> charCount = [];
+            // Convertir las cadenas a arrays de caracteres y ordenarlos
+            char[] originalArr = original.ToCharArray();
+            char[] modifiedArr = modified.ToCharArray();
+            Array.Sort(originalArr);
+            Array.Sort(modifiedArr);
 
-            // Contar la frecuencia de cada carácter en 'original'
-            foreach (char ch in original)
+            // Recorrer el array más corto
+            int minLength = Math.Min(originalArr.Length, modifiedArr.Length);
+            for (int i = 0; i < minLength; i++)
             {
-                if (charCount.TryGetValue(ch, out int value))
+                // Si los caracteres no coinciden, devolver el extra/faltante
+                if (originalArr[i] != modifiedArr[i])
                 {
-                    charCount[ch] = ++value;
-                }
-                else
-                {
-                    charCount[ch] = 1;
+                    return originalArr.Length < modifiedArr.Length ? modifiedArr[i].ToString() : originalArr[i].ToString();
                 }
             }
 
-            // Ajustar la frecuencia basada en 'modified' y encontrar el carácter adicional
-            foreach (char ch in modified)
+            // Si se recorrió toda la cadena sin encontrar diferencias, el caracter extra/faltante está al final de la cadena más larga
+            if (originalArr.Length != modifiedArr.Length)
             {
-                if (!charCount.TryGetValue(ch, out int value))
-                {
-                    return ch.ToString(); // Este es el carácter adicional
-                }
-
-                charCount[ch] = --value;
-                if (value < 0)
-                {
-                    return ch.ToString(); // Este es el carácter adicional
-                }
+                return originalArr.Length < modifiedArr.Length ? modifiedArr[minLength].ToString() : originalArr[minLength].ToString();
             }
 
-            // Buscar cualquier carácter que falte en 'modified'
-            foreach (KeyValuePair<char, int> pair in charCount)
-            {
-                if (pair.Value > 0)
-                {
-                    return pair.Key.ToString(); // Este es el carácter faltante
-                }
-            }
-
-            return ""; // Si no se encuentra ningún carácter adicional o faltante
+            // Si no se encuentra ninguna diferencia, devolver cadena vacía
+            return "";
         }
     }
 }
