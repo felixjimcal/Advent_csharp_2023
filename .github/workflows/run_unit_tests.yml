@@ -11,9 +11,7 @@ jobs:
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '3.1.x' # o la versión que estés utilizando
-      - name: Restore NuGet packages
-        run: dotnet restore
+          dotnet-version: '8'
       - name: Run tests
         run: dotnet test
         working-directory: ./ChallengesTests
