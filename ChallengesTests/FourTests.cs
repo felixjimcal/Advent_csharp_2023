@@ -8,7 +8,7 @@ namespace ChallengesTests
         [TestMethod]
         public void TestSimpleInvert()
         {
-            string result = Four.Run("hola (odnumS)");
+            string result = Four.Run("hola (odnum)");
             Assert.AreEqual("hola mundo", result);
         }
 
