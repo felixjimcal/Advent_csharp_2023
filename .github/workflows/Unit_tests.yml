@@ -1,7 +1,7 @@
 name: Run Unit Tests
 
 on: 
-  push:
+  pull:
     paths:
       - '**/*.cs'
       - '**/*.csproj'
@@ -30,6 +30,7 @@ jobs:
 
     - name: Restore dependencies
       run: dotnet restore challenges.sln
+      working-directory: ./challenges.sln
 
     - name: Build
       run: dotnet build challenges.sln --configuration Release --no-restore
