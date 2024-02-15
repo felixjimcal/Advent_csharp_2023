@@ -6,6 +6,7 @@ on:
       - '**/*.cs'
       - '**/*.csproj'
       - '**/*.sln'
+  pull_request:
 
 jobs:
   tests:
