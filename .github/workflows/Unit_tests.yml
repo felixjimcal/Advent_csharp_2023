@@ -30,7 +30,7 @@ jobs:
 
     - name: Restore dependencies
       run: dotnet restore challenges.sln
-      working-directory: challenges\challenges.sln
+      working-directory: ./Advent_csharp_2023/challenges
 
     - name: Build
       run: dotnet build challenges.sln --configuration Release --no-restore
