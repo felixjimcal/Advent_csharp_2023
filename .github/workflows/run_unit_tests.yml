@@ -1,12 +1,39 @@
 name: Run Unit Tests
 
-on: push
+on: 
+  push:
+    paths:
+      - '**/*.cs'
+      - '**/*.csproj'
+      - '**/*.sln'
 
 jobs:
   tests:
     name: Unit Testing
     runs-on: windows-latest
+
     steps:
-      - uses: actions/checkout@v2.1.0
-      - run: dotnet test
-        working-directory: ./ChallengesTests
+    - uses: actions/checkout@v2.1.0
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.1'
+
+    - name: Cache NuGet packages
+      uses: actions/cache@v2
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/challenges.sln') }} 
+        restore-keys: |
+          ${{ runner.os }}-nuget-
+
+    - name: Restore dependencies
+      run: dotnet restore challenges.sln
+
+    - name: Build
+      run: dotnet build challenges.sln --configuration Release --no-restore
+
+    - name: Test
+      run: dotnet test ChallengesTests --no-restore --verbosity normal
+      working-directory: ./ChallengesTests
