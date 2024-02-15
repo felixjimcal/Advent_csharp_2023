@@ -38,7 +38,19 @@ jobs:
     - name: Test
       run: dotnet test .\ChallengesTests --verbosity normal --collect:"XPlat Code Coverage" --logger trx --results-directory coverage
 
-    - name: Code Coverage Summary Report
+  coverage-report:
+    name: Code Coverage Report
+    needs: unit_tests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2.1.0
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '8.x'
+
+    - name: Code Coverage Report
       uses: irongut/CodeCoverageSummary@v1.3.0
       with:
         filename: 'coverage/*/coverage.cobertura.xml'
