@@ -35,7 +35,7 @@ jobs:
       run: dotnet build .\challenges\challenges.sln --configuration Release --no-restore
 
     - name: Test
-      run: dotnet test .\ChallengesTests --no-restore --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+      run: dotnet test .\ChallengesTests --no-restore --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
 
   coverage_report:
     name: Code Coverage Report
