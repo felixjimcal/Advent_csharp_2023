@@ -36,4 +36,4 @@ jobs:
       
     - name: Test
       run: dotnet test ChallengesTests --no-restore --verbosity normal
-      working-directory: ChallengesTests
+      working-directory: ./ChallengesTests
