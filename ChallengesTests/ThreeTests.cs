@@ -6,7 +6,7 @@ namespace ChallengesTests
     public class ThreeTests
     {
         [TestMethod]
-        public void TestRunWithExtraCharAtEnds()
+        public void TestRunWithExtraCharAtEnd()
         {
             string result = Three.Run("abc", "abcd");
             Assert.AreEqual("d", result);
