@@ -32,7 +32,7 @@ jobs:
       run: dotnet restore .\challenges\challenges.sln
 
     - name: Build
-      run: dotnet build challenges.sln --configuration Release --no-restore
+      run: dotnet build .\challenges\challenges.sln --configuration Release --no-restore
       
     - name: Test
       run: dotnet test ChallengesTests --no-restore --verbosity normal
