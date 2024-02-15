@@ -35,5 +35,4 @@ jobs:
       run: dotnet build .\challenges\challenges.sln --configuration Release --no-restore
       
     - name: Test
-      run: dotnet test ChallengesTests --no-restore --verbosity normal
-      working-directory: ./ChallengesTests
+      run: dotnet test .\ChallengesTests --no-restore --verbosity normal
